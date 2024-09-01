@@ -1,5 +1,4 @@
 import PostLists from "@/components/posts-lists";
-import Link from "next/link";
 import { Suspense } from "react";
 
 export default async function PostsPage() {
