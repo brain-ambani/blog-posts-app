@@ -1,20 +1,12 @@
+import prisma from "@/lib/db";
 import Link from "next/link";
 
-type Post = {
-  id: number;
-  title: string;
-};
-
-type Data = {
-  posts: Post[];
-};
-
 export default async function PostLists() {
-  const response = await fetch("https://dummyjson.com/posts?limit=10");
-  const data: Data = await response.json();
+  const posts = await prisma.post.findMany();
+
   return (
     <ul>
-      {data.posts.map((post: Post) => (
+      {posts.map((post) => (
         <li key={post.id} className="text-left  mb-3">
           <Link href={`/posts/${post.id}`} className="text-2xl ">
             {post.title}
